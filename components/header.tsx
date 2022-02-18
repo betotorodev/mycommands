@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useToggle } from 'hooks/useToggle';
 import { Container, Grid, Input } from '@nextui-org/react'
 import { Search, ArrowDown, ArrowUp } from 'iconoir-react'
 import { ListOfCategories } from './listOfCategories'
 
 export const Header = () => {
-  const [toggle, setToggle] = useState(false)
-  const handleModal = () => setToggle(!toggle)
+  const [toggle, handleModal] = useToggle()
   return (
     <Container>
       <Grid.Container gap={1}>

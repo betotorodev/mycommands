@@ -1,13 +1,12 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
+import { useToggle } from 'hooks/useToggle';
 import Head from 'next/head'
 import { Text, Container, Spacer, Button, Modal } from '@nextui-org/react';
 import Github from '../public/github.svg'
 
 
 const login: NextPage = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false)
-  const handleModal = () => setIsVisible(!isVisible)
+  const [isVisible, handleModal] = useToggle()
   return (
     <>
       <Head>

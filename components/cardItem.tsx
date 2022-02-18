@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useToggle } from 'hooks/useToggle';
 import { Card, Col, Modal, Row, Text } from '@nextui-org/react'
 
 const themeColors = {
@@ -9,8 +9,7 @@ const themeColors = {
 }
 
 export const CardItem = ({ command }: {command: string}) => {
-  const [isVisible, setIsVisible] = useState(false)
-  const handleModal = () => setIsVisible(!isVisible)
+  const [isVisible, handleModal] = useToggle()
   return (
     <Card shadow={false} hoverable css={{backgroundColor: themeColors.backgroundLight, color: themeColors.textDark, fontFamily: 'mono'}}>
       <Text css={{fontFamily: 'mono'}}>{command}</Text>

@@ -1,6 +1,6 @@
 import { useToggle } from 'hooks/useToggle';
-import { Container, Row, Avatar, Card, Text } from '@nextui-org/react'
-import { List, AddCircledOutline, RemoveUser } from 'iconoir-react';
+import { Container, Row, Avatar, Card} from '@nextui-org/react'
+import { List, AddCircledOutline } from 'iconoir-react';
 import { CloseSession } from 'components/closeSession'
 
 export const Navbar = () => {
