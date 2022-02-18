@@ -1,6 +1,7 @@
 import { useToggle } from 'hooks/useToggle';
 import { Container, Row, Avatar, Card, Text } from '@nextui-org/react'
 import { List, AddCircledOutline, RemoveUser } from 'iconoir-react';
+import { CloseSession } from 'components/closeSession'
 
 export const Navbar = () => {
   const [isVisible, setIsVisible] = useToggle()
@@ -13,14 +14,7 @@ export const Navbar = () => {
           <Avatar onClick={setIsVisible} bordered rounded text="Beto" size="sm" color="primary" />
         </Row>
       </Card>
-      {
-        isVisible && 
-          <Card css={{position: 'absolute', bottom: '-36px', right: '26px', width: 'fit-content', zIndex: '1'}}>
-            <Text h5 css={{display: 'flex', alignItems: 'center'}}>
-              Cerrar Sesión <RemoveUser style={{marginLeft: '10px'}}/>
-            </Text>
-          </Card>
-      }
+      {isVisible && <CloseSession />}
     </Container>
   )
 } 
