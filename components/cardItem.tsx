@@ -1,4 +1,5 @@
-import { Card, Col, Container, Grid, Input, Row, Text } from '@nextui-org/react'
+import { useState } from 'react'
+import { Card, Col, Modal, Row, Text } from '@nextui-org/react'
 
 const themeColors = {
   backgroundDark: '#40434A',
@@ -8,41 +9,58 @@ const themeColors = {
 }
 
 export const CardItem = ({ command }: {command: string}) => {
-    return (
-      <Card shadow={false} hoverable css={{backgroundColor: themeColors.backgroundLight, color: themeColors.textDark, fontFamily: 'mono'}}>
-        <Text css={{fontFamily: 'mono'}}>{command}</Text>
-        <Card.Footer>
-          <Row>
-            <Col>
-              <small style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: 'fit-content',
-                    padding: ' 8px 16px',
-                    borderRadius: '0.75rem',
-                    backgroundColor: '#7928ca',
-                    color: 'white'
-                  }}>
-                    Git
-              </small>
-            </Col>
-            <Col>
-              <small style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: 'fit-content',
-                    padding: ' 8px 16px',
-                    borderRadius: '0.75rem',
-                    backgroundColor: '#444',
-                    color: 'white'
-                  }}>
-                    Info
-              </small>
-            </Col>
-          </Row>
-        </Card.Footer>
-      </Card>
-    )
-  }
+  const [isVisible, setIsVisible] = useState(false)
+  const handleModal = () => setIsVisible(!isVisible)
+  return (
+    <Card shadow={false} hoverable css={{backgroundColor: themeColors.backgroundLight, color: themeColors.textDark, fontFamily: 'mono'}}>
+      <Text css={{fontFamily: 'mono'}}>{command}</Text>
+      <Card.Footer>
+        <Row>
+          <Col>
+            <small style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: 'fit-content',
+                  padding: ' 8px 16px',
+                  borderRadius: '0.75rem',
+                  backgroundColor: '#7928ca',
+                  color: 'white'
+                }}>
+                  Git
+            </small>
+          </Col>
+          <Col>
+            <small onClick={handleModal} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: 'fit-content',
+                  padding: ' 8px 16px',
+                  borderRadius: '0.75rem',
+                  backgroundColor: '#444',
+                  color: 'white'
+                }}>
+                  Info
+            </small>
+              <Modal
+                scroll
+                closeButton
+                aria-labelledby="modal-title"
+                width='20rem'
+                open={isVisible}
+                onClose={handleModal}
+                style={{paddingBottom: '1.5rem'}}
+              >
+                <Modal.Body>
+                  <Text id="modal-title" size={18} b>
+                    Este comando me permite guardar los cambios en stash y poder cambiar de rama sin tener que hacer commits innecesarios
+                  </Text>
+                </Modal.Body>
+            </Modal>
+          </Col>
+        </Row>
+      </Card.Footer>
+    </Card>
+  )
+}
