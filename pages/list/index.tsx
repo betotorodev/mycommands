@@ -14,7 +14,7 @@ const List: NextPage = () => {
       <main style={{paddingTop: '2rem'}}>
         <Header />
         <Container>
-          <Grid.Container gap={1} css={{marginBottom: '10rem'}}>
+          <Grid.Container gap={1} css={{marginBottom: '8rem'}}>
             {
               [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
                 <Grid key={i} xs={6}>

@@ -3,7 +3,7 @@ import { List, AddCircledOutline } from 'iconoir-react';
 
 export const Navbar = () => {
   return (
-    <Container css={{position: 'fixed', bottom: '4rem'}}>
+    <Container css={{position: 'fixed', bottom: '2rem'}}>
       <Card>
         <Row justify="space-between" align="center">
           <List />
