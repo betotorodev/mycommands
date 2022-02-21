@@ -30,27 +30,11 @@ const Home: NextPage = () => {
       </Container>
       <Container display='flex' direction='column' alignContent="flex-end">
         <Spacer y={15}></Spacer>
-        <Button size="sm" onClick={handleModal}>Log in</Button>
-         <Modal
-          closeButton
-          aria-labelledby="modal-title"
-          width='20rem'
-          open={isVisible}
-          onClose={handleModal}
-        >
-          <Modal.Header>
-              <Text id="modal-title" size={18} b>
-              Login
-              </Text>
-          </Modal.Header>
-            <Modal.Footer justify='center'>
-              <Button css={{backgroundColor: 'black'}}>
-                Login with Github
-                <Spacer x={0.5}/>
-                <Github />
-              </Button>
-            </Modal.Footer>
-        </Modal>
+        <Button css={{backgroundColor: 'black'}}>
+          Login with Github
+          <Spacer x={0.5}/>
+          <Github />
+        </Button>
       </Container>
     </>
   )
