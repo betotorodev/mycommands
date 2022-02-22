@@ -29,19 +29,18 @@ const Home: NextPage = () => {
           </Text>
           <Text css={{
             textAlign: 'center',
-            transform: 'translateX(100px)',
-            width: '50%',
             '@xs': {
               textAlign: 'right'
-            }}}>
+            }
+          }}>
             Guarda todos tus comandos en un solo lugar
           </Text>
         </Container>
         <Container display='flex' direction='column' alignContent="flex-end">
           <Spacer y={10}></Spacer>
-          <Button css={{backgroundColor: 'black'}}>
+          <Button css={{ backgroundColor: 'black' }}>
             Login with Github
-            <Spacer x={0.5}/>
+            <Spacer x={0.5} />
             <Github />
           </Button>
         </Container>

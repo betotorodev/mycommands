@@ -8,8 +8,7 @@ import {
   Textarea,
   Button
 } from '@nextui-org/react'
-import { Layout } from 'components/layout'
-import { CategoryItem } from 'components/categoryItem'
+import { Layout } from 'layout/layout'
 import { ListOfCategoryItem } from 'components/listOfCategoryItem'
 
 const Add: NextPage = () => {
