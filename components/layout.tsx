@@ -13,7 +13,11 @@ export const Layout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {children}
-      <footer style={{position: 'relative'}}>
+      <footer style={{
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
         <Navbar />
       </footer>
     </>

@@ -7,7 +7,11 @@ import { CloseSession } from 'components/closeSession'
 export const Navbar = () => {
   const [isVisible, setIsVisible] = useToggle()
   return (
-    <Container css={{position: 'fixed', bottom: '3rem'}}>
+    <Container css={{
+        position: 'fixed', 
+        bottom: '3rem',
+        maxWidth: '400px',
+      }}>
       <Card>
         <Row justify="space-between" align="center">
           <Link href='/list' passHref><List /></Link>
