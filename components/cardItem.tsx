@@ -56,14 +56,14 @@ export const CardItem = ({ command }: { command: string }) => {
           <Modal
             scroll
             closeButton
-            aria-labelledby='modal-title'
+            aria-describedby="modal-description"
             width='20rem'
             open={isVisible}
             onClose={handleModal}
             style={{ paddingBottom: '1.5rem' }}
           >
             <Modal.Body>
-              <Text id='modal-title' size={18} b>
+              <Text id='modal-description' size={18} b>
                 Este comando me permite guardar los cambios en stash y poder
                 cambiar de rama sin tener que hacer commits innecesarios
               </Text>

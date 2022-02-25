@@ -9,9 +9,9 @@ export const Header = () => {
     <Container>
       <Grid.Container gap={1}>
         <Grid xs={8}>
-            <Input size="md" width='100%' clearable placeholder="busca tu comando" contentRight={<Search />} />
+          <Input size="md" width='100%' aria-label="buscador" clearable placeholder="busca tu comando" contentRight={<Search />} />
         </Grid>
-        <Grid xs={4} css={{position: 'relative'}}>
+        <Grid xs={4} css={{ position: 'relative' }}>
           <div onClick={handleModal} style={{
             display: 'flex',
             alignItems: 'center',
