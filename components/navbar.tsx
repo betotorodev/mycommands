@@ -8,27 +8,28 @@ import { useLargeBreakpoint } from 'hooks'
 export const Navbar = () => {
   const [isVisible, setIsVisible] = useToggle()
   const isDesktop = useLargeBreakpoint()
-  console.log(isDesktop)
   return (
     <Container
       css={{
         position: 'fixed',
-        bottom: '3rem',
+        bottom: `${isDesktop ? '50%' : '3rem'}`,
+        left: `${isDesktop && '3rem'}`,
         maxWidth: '400px',
-        '@lg': {
-          left: '3rem',
-          bottom: '50%',
-          transform: 'rotate(90deg)'
-        }
+        transform: `${isDesktop && 'rotate(90deg)'}`
       }}
     >
       <Card>
         <Row justify='space-between' align='center'>
           <Link href='/list' passHref>
-            <List style={{ transform: `${isDesktop ? 'rotate(270deg)' : ''}` }} />
+            <List
+              style={{ transform: `${isDesktop ? 'rotate(270deg)' : ''}` }}
+            />
           </Link>
           <Link href='/add' passHref>
-            <AddCircledOutline height={36} width={36} />
+            <AddCircledOutline
+              height={36}
+              width={36}
+            />
           </Link>
           <Avatar
             onClick={setIsVisible}
@@ -37,6 +38,7 @@ export const Navbar = () => {
             text='Beto'
             size='sm'
             color='primary'
+            style={{ transform: `${isDesktop ? 'rotate(270deg)' : ''}` }}
           />
         </Row>
       </Card>
