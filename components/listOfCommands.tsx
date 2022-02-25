@@ -9,8 +9,8 @@ export const ListOfCommands = () => {
         gap={1}
         css={{ marginBottom: '8rem' }}
       >
-        {array.map((i) => (
-          <Grid key={i} xs={6}>
+        {array.map((item, index) => (
+          <Grid key={index} xs={6}>
             <CardItem
               command='Git push texto de prueba pa ver esta el largo del componente
               '
