@@ -6,7 +6,7 @@ import { CloseSession } from 'components/closeSession'
 import { useLargeBreakpoint } from 'hooks'
 
 export const Navbar = () => {
-  const [isVisible, setIsVisible] = useToggle()
+  const [isVisible, setIsVisible] = useToggle(false)
   const isDesktop = useLargeBreakpoint()
   return (
     <Container
@@ -43,7 +43,7 @@ export const Navbar = () => {
         </Row>
       </Card>
       <div style={{
-        display: `${isVisible ? 'none' : 'flex'}`
+        display: `${isVisible ? 'flex' : 'none'}`
       }} >
         <CloseSession />
       </div>
