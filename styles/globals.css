@@ -6,10 +6,10 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-image: url('../public/bbburst.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-image: radial-gradient(#4ade7b80 2px, transparent 2px),
+    radial-gradient(#4ade7b50 2px, transparent 2px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
 }
 
 a {
