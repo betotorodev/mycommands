@@ -13,7 +13,7 @@ export const Navbar = () => {
       css={{
         position: 'fixed',
         bottom: `${isDesktop ? '50%' : '3rem'}`,
-        left: `${isDesktop && '3rem'}`,
+        left: `${isDesktop && '-3rem'}`,
         maxWidth: '400px',
         transform: `${isDesktop && 'rotate(90deg)'}`
       }}
@@ -42,7 +42,11 @@ export const Navbar = () => {
           />
         </Row>
       </Card>
-      {isVisible && <CloseSession />}
+      <div style={{
+        display: `${isVisible ? 'none' : 'flex'}`
+      }} >
+        <CloseSession />
+      </div>
     </Container>
   )
 }
