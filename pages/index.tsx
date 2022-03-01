@@ -1,17 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { signIn, useSession } from "next-auth/react"
+import { signIn, useSession, signOut } from "next-auth/react"
 import { Text, Container, Spacer, Button } from '@nextui-org/react';
 import Github from '../public/github.svg'
+import { LoginButton } from 'components/loginButton';
 
 const Home: NextPage = () => {
-  const router = useRouter()
-  const handleInitSessions = () => {
-    signIn()
-    router.push('/add')
-  }
-
+  const { data: session, status } = useSession()
+  console.log(status)
   return (
     <>
       <Head>
@@ -46,11 +43,7 @@ const Home: NextPage = () => {
         </Container>
         <Container display='flex' direction='column' alignContent="flex-end">
           <Spacer y={10}></Spacer>
-          <Button onClick={handleInitSessions} css={{ backgroundColor: 'black' }}>
-            Login with Github
-            <Spacer x={0.5} />
-            <Github />
-          </Button>
+          <LoginButton />
         </Container>
       </main>
     </>

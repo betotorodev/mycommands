@@ -12,10 +12,9 @@ export const Navbar = () => {
   const { data: session } = useSession()
   const [isVisible, setIsVisible] = useToggle(false)
   const isDesktop = useLargeBreakpoint()
-  console.log(session)
+  const userImage = session?.user?.image as string
   const handleCloseSession = () => {
-    signOut()
-    console.log(session)
+    signOut({ callbackUrl: '/' })
   }
   return (
     <Container
@@ -41,6 +40,7 @@ export const Navbar = () => {
             />
           </Link>
           <Avatar
+            src={userImage}
             onClick={setIsVisible}
             bordered
             rounded
