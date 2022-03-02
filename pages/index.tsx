@@ -19,6 +19,7 @@ const Home: NextPage = () => {
       <main style={{
         height: '100vh',
         width: '100vw',
+        maxWidth: '960px',
         display: 'flex',
         justifyContent: 'space-around',
         flexDirection: 'column',
