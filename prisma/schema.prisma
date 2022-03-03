@@ -10,6 +10,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// commands
+model Command {
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now())
+  command     String
+  description String
+  authorId    String
+  author      User       @relation(fields: [authorId], references: [id])
+  categories  Category[] @relation(references: [id])
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  commands Command[] @relation(references: [id])
+}
+
+// user and session
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -45,6 +64,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Command       Command[]
 }
 
 model VerificationToken {
