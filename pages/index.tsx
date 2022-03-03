@@ -20,6 +20,7 @@ const Home: NextPage = () => {
         height: '100vh',
         width: '100vw',
         maxWidth: '960px',
+        margin: '0 auto',
         display: 'flex',
         justifyContent: 'space-around',
         flexDirection: 'column',
