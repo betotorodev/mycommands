@@ -16,9 +16,10 @@ import { CardItem } from 'components/cardItem'
 //   listOfCommands: ReactNode | ReactChild
 // }
 
+// CORRECT TYPES
+
 export const ListOfCommands = ({ listOfCommands }: any) => {
   const array = Array(15).fill('')
-  console.log(listOfCommands)
   return (
     <Container>
       <Grid.Container
