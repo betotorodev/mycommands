@@ -13,7 +13,7 @@ datasource db {
 // commands
 model Command {
   id          String     @id @default(cuid())
-  createdAt   DateTime   @default(now())
+  // createdAt   DateTime   @default(now())
   command     String
   description String
   authorId    String

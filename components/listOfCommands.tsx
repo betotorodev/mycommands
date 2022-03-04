@@ -1,19 +1,35 @@
+
+import { ReactChild, ReactNode, VFC } from 'react';
 import { Container, Grid } from '@nextui-org/react'
 import { CardItem } from 'components/cardItem'
 
-export const ListOfCommands = () => {
+// type Command = {
+//   author: string,
+//   authorId: string,
+//   command: string,
+//   description: string,
+//   id: string,
+//   result: ReactNode
+// }
+
+// interface listOfCommands {
+//   listOfCommands: ReactNode | ReactChild
+// }
+
+export const ListOfCommands = ({ listOfCommands }: any) => {
   const array = Array(15).fill('')
+  console.log(listOfCommands)
   return (
     <Container>
       <Grid.Container
         gap={1}
         css={{ marginBottom: '8rem' }}
       >
-        {array.map((item, index) => (
-          <Grid key={index} xs={6}>
+        {listOfCommands?.result.map((item: any) => (
+          <Grid key={item.id} xs={6}>
             <CardItem
-              command='Git push texto de prueba pa ver esta el largo del componente
-              '
+              description={item.description}
+              command={item.command}
             />
           </Grid>
         ))}

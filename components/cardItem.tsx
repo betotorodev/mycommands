@@ -8,7 +8,13 @@ const themeColors = {
   textLight: '#E7ECED'
 }
 
-export const CardItem = ({ command }: { command: string }) => {
+export const CardItem = ({
+  command,
+  description
+}: {
+  command: string
+  description: string
+}) => {
   const [isVisible, handleModal] = useToggle()
   return (
     <Card
@@ -22,7 +28,7 @@ export const CardItem = ({ command }: { command: string }) => {
     >
       <Text css={{ fontFamily: 'mono' }}>{command}</Text>
       <Card.Footer>
-        <Row justify="flex-start">
+        <Row justify='flex-start'>
           <small
             style={{
               display: 'flex',
@@ -56,7 +62,7 @@ export const CardItem = ({ command }: { command: string }) => {
           <Modal
             scroll
             closeButton
-            aria-describedby="modal-description"
+            aria-describedby='modal-description'
             width='20rem'
             open={isVisible}
             onClose={handleModal}
@@ -64,8 +70,7 @@ export const CardItem = ({ command }: { command: string }) => {
           >
             <Modal.Body>
               <Text id='modal-description' size={18} b>
-                Este comando me permite guardar los cambios en stash y poder
-                cambiar de rama sin tener que hacer commits innecesarios
+                {description}
               </Text>
             </Modal.Body>
           </Modal>
