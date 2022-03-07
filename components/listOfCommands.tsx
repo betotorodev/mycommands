@@ -26,7 +26,7 @@ export const ListOfCommands = ({ listOfCommands }: any) => {
         gap={1}
         css={{ marginBottom: '8rem' }}
       >
-        {listOfCommands?.result.map((item: any) => (
+        {listOfCommands?.map((item: any) => (
           <Grid key={item.id} xs={6}>
             <CardItem
               description={item.description}
@@ -34,6 +34,14 @@ export const ListOfCommands = ({ listOfCommands }: any) => {
             />
           </Grid>
         ))}
+        {/* {array.map((item: any) => (
+          <Grid key={item.id} xs={6}>
+            <CardItem
+              description={item.description}
+              command={item.command}
+            />
+          </Grid>
+        ))} */}
       </Grid.Container>
     </Container>
   )

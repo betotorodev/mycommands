@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import type { NextPage, GetStaticProps } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
 import { Layout } from 'layout/layout'
 import { Header } from 'components/header'
 import { ListOfCommands } from "components/listOfCommands"
 import { prisma } from 'prisma/index'
+import { Command } from '@prisma/client'
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const result = await prisma.command.findMany({
     include: {
       author: {
@@ -17,7 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const List: NextPage = (props) => {
-
+  const { result }: any = props
   return (
     <Layout>
       <Head>
@@ -25,7 +26,7 @@ const List: NextPage = (props) => {
       </Head>
       <main style={{ paddingTop: '2rem' }}>
         <Header />
-        <ListOfCommands listOfCommands={props} />
+        <ListOfCommands listOfCommands={result} />
       </main>
     </Layout>
   )
