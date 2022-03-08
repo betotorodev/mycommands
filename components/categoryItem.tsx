@@ -1,6 +1,6 @@
 import { Card } from '@nextui-org/react'
 
-export const CategoryItem = () => {
+export const CategoryItem = ({ title }: { title: string }) => {
   return (
     <Card
       shadow={false}
@@ -8,10 +8,11 @@ export const CategoryItem = () => {
         borderRadius: '25%',
         width: 'fit-content',
         fontSize: '12px',
-        padding: '$0'
+        padding: '$0',
+        cursor: 'pointer'
       }}
     >
-      Git
+      {title}
     </Card>
   )
 }
