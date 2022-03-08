@@ -9,14 +9,15 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { content, description } = req.body
+  const { content, description, category } = req.body
 
   const session = await getSession({ req })
   const result = await prisma.command.create({
     data: {
       command: content,
       description: description,
-      author: { connect: { email: session?.user?.email } } as any
+      author: { connect: { email: session?.user?.email } } as any,
+      category: category
     }
   })
   res.json(result)

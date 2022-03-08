@@ -18,20 +18,23 @@ const Add: NextPage = () => {
   const router = useRouter()
   const [command, setCommand] = useState({
     content: '',
-    description: ''
+    description: '',
+    category: 'Git',
   })
   const handleCommandChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
     setCommand(prevState => ({
       content: value,
-      description: `${prevState.description}`
+      description: `${prevState.description}`,
+      category: `${prevState.category}`
     }))
   }
   const handleDescriptionChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
     setCommand(prevState => ({
       content: `${prevState.content}`,
-      description: value
+      description: value,
+      category: `${prevState.category}`
     }))
   }
   const handleSave = async () => {
