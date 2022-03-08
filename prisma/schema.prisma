@@ -12,19 +12,19 @@ datasource db {
 
 // commands
 model Command {
-  id          String     @id @default(cuid())
-  // createdAt   DateTime   @default(now())
+  id          String @id @default(cuid())
   command     String
   description String
   authorId    String
-  author      User       @relation(fields: [authorId], references: [id])
-  categories  Category[] @relation(references: [id])
+  author      User   @relation(fields: [authorId], references: [id])
+  category    String
 }
 
 model Category {
-  id       Int       @id @default(autoincrement())
+  id       String @id @default(cuid())
   name     String
-  commands Command[] @relation(references: [id])
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
 }
 
 // user and session
@@ -57,14 +57,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
   Command       Command[]
+  Categories    Category[]
 }
 
 model VerificationToken {
