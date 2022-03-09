@@ -1,8 +1,9 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
 import React, { useState, ChangeEvent } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { prisma } from 'prisma/index'
 import {
-  Text,
   Container,
   Spacer,
   Input,
@@ -12,9 +13,9 @@ import {
 } from '@nextui-org/react'
 import { Layout } from 'layout/layout'
 import { ListOfCategoryItem } from 'components/listOfCategoryItem'
-import { useRouter } from 'next/router'
 
-const Add: NextPage = () => {
+const Add: NextPage = (props) => {
+  const { result }: any = props
   const router = useRouter()
   const [command, setCommand] = useState({
     content: '',
@@ -71,7 +72,7 @@ const Add: NextPage = () => {
           />
         </Container>
         <Spacer y={2} />
-        <ListOfCategoryItem />
+        <ListOfCategoryItem categories={result} />
         <Spacer y={2} />
         <Container>
           <Textarea
@@ -93,3 +94,15 @@ const Add: NextPage = () => {
 }
 
 export default Add
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const result = await prisma.category.findMany({
+    include: {
+      author: {
+        select: { name: true },
+      },
+    },
+  })
+  return { props: { result } };
+};
+

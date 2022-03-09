@@ -3,11 +3,40 @@ import {
   Container,
   Spacer,
   Grid,
-  Card
+  Card,
+  Input,
+  FormElement
 } from '@nextui-org/react'
 import { CategoryItem } from 'components/categoryItem'
+import {
+  useState,
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef
+} from 'react'
 
-export const ListOfCategoryItem = () => {
+export const ListOfCategoryItem = ({ categories }: any) => {
+  let category = useRef('')
+  const [newCategory, setNewCategory] = useState(categories)
+  const handleCategoryChange = (e: ChangeEvent<FormElement>) => {
+    const { value } = e.target
+    category.current = value
+  }
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      setNewCategory((prevState: any) => {
+        return [
+          ...prevState,
+          {
+            id: 'w',
+            name: category.current
+          }
+        ]
+      })
+    }
+  }
+
   return (
     <Container>
       <Text
@@ -19,17 +48,27 @@ export const ListOfCategoryItem = () => {
       <Spacer y={0.3} />
       <Card shadow={false} css={{ backgroundColor: '#f4f4f4' }}>
         <Grid.Container gap={1}>
-          {
-            [1, 2, 3, 4, 5].map(category => {
-              return (
-                <Grid key={category} sm={3}>
-                  <CategoryItem />
-                </Grid>
-              )
-            })
-          }
+          {newCategory.map((category: any, index: number) => {
+            return (
+              <Grid
+                onClick={() => console.log(category.id)}
+                key={index}
+              >
+                <CategoryItem title={category.name} />
+              </Grid>
+            )
+          })}
+          <Grid sm={2}>
+            <Input
+              onChange={handleCategoryChange}
+              onKeyDown={handleKeyDown}
+              clearable
+              placeholder='otro...'
+              aria-label='add new category'
+            />
+          </Grid>
         </Grid.Container>
       </Card>
-    </Container>
+    </Container >
   )
 }
