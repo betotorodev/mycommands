@@ -13,7 +13,7 @@ datasource db {
 // commands
 model Command {
   id          String @id @default(cuid())
-  command     String
+  text        String
   description String
   authorId    String
   author      User   @relation(fields: [authorId], references: [id])
