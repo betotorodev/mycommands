@@ -1,5 +1,5 @@
 import type { NextPage, GetServerSideProps } from 'next'
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { prisma } from 'prisma/index'
@@ -13,43 +13,41 @@ import {
 } from '@nextui-org/react'
 import { Layout } from 'layout/layout'
 import { ListOfCategoryItem } from 'components/listOfCategoryItem'
+import { useForm } from 'hooks/useForm'
 
 const Add: NextPage = (props) => {
   const { result }: any = props
+  const [inputValue, handleInputValue] = useForm()
   const router = useRouter()
-  const [command, setCommand] = useState({
-    content: '',
-    description: '',
-    category: 'Git',
-  })
+
   const handleCommandChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
-    setCommand(prevState => ({
-      content: value,
-      description: `${prevState.description}`,
-      category: `${prevState.category}`
-    }))
+    handleInputValue('text', value)
   }
   const handleDescriptionChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
-    setCommand(prevState => ({
-      content: `${prevState.content}`,
-      description: value,
-      category: `${prevState.category}`
-    }))
+    handleInputValue('description', value)
   }
   const handleSave = async () => {
+    const { category } = inputValue
+    console.log(inputValue)
     try {
       await fetch('/api/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(command),
+        body: JSON.stringify(inputValue),
+      })
+      await fetch('/api/post/category', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(category),
       })
       await router.push('/list')
     } catch (error) {
       console.error(error)
     }
   }
+
   return (
     <Layout>
       <Head>
