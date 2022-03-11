@@ -30,7 +30,7 @@ const Add: NextPage = (props) => {
   }
   const handleSave = async () => {
     const { category } = inputValue
-    console.log(inputValue)
+    const categoryObject = { category }
     try {
       await fetch('/api/post', {
         method: 'POST',
@@ -40,7 +40,7 @@ const Add: NextPage = (props) => {
       await fetch('/api/post/category', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(category),
+        body: JSON.stringify(categoryObject),
       })
       await router.push('/list')
     } catch (error) {
