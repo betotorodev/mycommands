@@ -16,29 +16,30 @@ import {
 } from '@nextui-org/react'
 import { CategoryItem } from 'components/categoryItem'
 import { prisma } from 'prisma/index'
-import { useForm } from 'hooks/index'
+import { useForm, useCategory } from 'hooks/index'
 import category from 'pages/api/post/category'
 
 export const ListOfCategoryItem = ({ categories }: any) => {
   let category = useRef('')
+  const [categoryValue, handleCategoryValue] = useCategory()
   const [inputValue, handleInputValue] = useForm()
-
   const [newCategory, setNewCategory] = useState(categories)
   const handleCategoryChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
-    category.current = value
+    handleCategoryValue(value)
   }
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
-      handleInputValue('category', category.current)
+      handleInputValue('category', categoryValue)
       setNewCategory((prevState: any) => {
         return [
           ...prevState,
           {
-            name: category.current
+            name: categoryValue
           }
         ]
       })
+      handleCategoryValue('')
     }
   }
 
@@ -70,6 +71,7 @@ export const ListOfCategoryItem = ({ categories }: any) => {
               clearable
               placeholder='otro...'
               aria-label='add new category'
+              value={categoryValue}
             />
           </Grid>
         </Grid.Container>
