@@ -10,10 +10,12 @@ const themeColors = {
 
 export const CardItem = ({
   command,
-  description
+  description,
+  category,
 }: {
   command: string
   description: string
+  category: string
 }) => {
   const [isVisible, handleModal] = useToggle()
   return (
@@ -42,7 +44,7 @@ export const CardItem = ({
               color: 'white'
             }}
           >
-            Git
+            {category}
           </small>
           <small
             onClick={handleModal}

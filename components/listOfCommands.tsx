@@ -31,6 +31,7 @@ export const ListOfCommands = ({ listOfCommands }: any) => {
             <CardItem
               description={item.description}
               command={item.text}
+              category={item.category}
             />
           </Grid>
         ))}
