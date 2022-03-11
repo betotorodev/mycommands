@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { signOut, useSession } from "next-auth/react"
+import { signOut, useSession } from 'next-auth/react'
 import { useToggle } from 'hooks/useToggle'
 import { Container, Row, Avatar, Card } from '@nextui-org/react'
 import { List, AddCircledOutline } from 'iconoir-react'
@@ -30,13 +30,17 @@ export const Navbar = () => {
         <Row justify='space-between' align='center'>
           <Link href='/list' passHref>
             <List
-              style={{ transform: `${isDesktop ? 'rotate(270deg)' : ''}` }}
+              style={{
+                transform: `${isDesktop ? 'rotate(270deg)' : ''}`,
+                cursor: 'pointer'
+              }}
             />
           </Link>
           <Link href='/add' passHref>
             <AddCircledOutline
               height={36}
               width={36}
+              style={{ cursor: 'pointer' }}
             />
           </Link>
           <Avatar
@@ -47,13 +51,20 @@ export const Navbar = () => {
             text='Beto'
             size='sm'
             color='primary'
-            style={{ transform: `${isDesktop ? 'rotate(270deg)' : ''}` }}
+            style={{
+              transform: `${isDesktop ? 'rotate(270deg)' : ''}`,
+              cursor: 'pointer'
+            }}
           />
         </Row>
       </Card>
-      <div onClick={handleCloseSession} style={{
-        display: `${isVisible ? 'flex' : 'none'}`
-      }} >
+      <div
+        onClick={handleCloseSession}
+        style={{
+          display: `${isVisible ? 'flex' : 'none'}`,
+          cursor: 'pointer'
+        }}
+      >
         <CloseSession />
       </div>
     </Container>
