@@ -9,6 +9,8 @@ export type CommandValues = {
 interface valuesContext {
   command: CommandValues;
   setCommand: Dispatch<SetStateAction<Object>>;
+  isCategoryRepeated: boolean;
+  setIsCategoryRepeated: Dispatch<SetStateAction<boolean>>;
 }
 
 const defaultState = {
@@ -18,13 +20,24 @@ const defaultState = {
     category: '',
   },
   setCommand: () => { },
+  isCategoryRepeated: false,
+  setIsCategoryRepeated: () => { }
 }
 
 const Context = createContext<valuesContext>(defaultState)
 
 export function CommandValuesProvider({ children }: { children: React.ReactNode }) {
   const [command, setCommand] = useState<any>()
-  return <Context.Provider value={{ command, setCommand }}>
+  const [isCategoryRepeated, setIsCategoryRepeated] = useState<boolean>(false)
+
+  const values = {
+    command,
+    setCommand,
+    isCategoryRepeated,
+    setIsCategoryRepeated
+  }
+
+  return <Context.Provider value={values}>
     {children}
   </Context.Provider>
 }

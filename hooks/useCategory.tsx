@@ -1,11 +1,25 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useContext, SetStateAction, Dispatch } from 'react'
 
-export const useCategory = (): [string, (contents: string) => void] => {
-  const [state, setState] = useState<string>('')
+import valuesContext from 'context/valuesContext'
 
-  const handleCategory = useCallback(
+export const useCategory = (): {
+  categoryValue: string
+  handleCategoryValue: (contents: string) => void
+  setIsCategoryRepeated: Dispatch<SetStateAction<boolean>>
+  isCategoryRepeated: boolean
+} => {
+  const [categoryValue, setState] = useState<string>('')
+  const { isCategoryRepeated, setIsCategoryRepeated } =
+    useContext(valuesContext)
+
+  const handleCategoryValue = useCallback(
     (content: string): void => setState(content),
     []
   )
-  return [state, handleCategory]
+  return {
+    categoryValue,
+    handleCategoryValue,
+    setIsCategoryRepeated,
+    isCategoryRepeated
+  }
 }
