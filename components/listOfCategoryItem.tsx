@@ -1,8 +1,4 @@
-import {
-  useState,
-  ChangeEvent,
-  KeyboardEvent,
-} from 'react'
+import { useState, ChangeEvent, KeyboardEvent, MouseEventHandler } from 'react'
 import {
   Text,
   Container,
@@ -16,6 +12,7 @@ import { CategoryItem } from 'components/categoryItem'
 import { useForm, useCategory } from 'hooks/index'
 
 export const ListOfCategoryItem = ({ categories }: any) => {
+  const [id, setId] = useState(0)
   const [categoryValue, handleCategoryValue] = useCategory()
   const [_, handleInputValue] = useForm()
   const [newCategory, setNewCategory] = useState(categories)
@@ -52,11 +49,11 @@ export const ListOfCategoryItem = ({ categories }: any) => {
         <Grid.Container gap={1}>
           {newCategory.map((category: any, index: number) => {
             return (
-              <Grid
-                onClick={() => console.log(category.id)}
-                key={index}
-              >
-                <CategoryItem title={category.name} />
+              <Grid onClick={() => setId(category.id)} key={index}>
+                <CategoryItem
+                  title={category.name}
+                  checked={id === category.id}
+                />
               </Grid>
             )
           })}
@@ -72,6 +69,6 @@ export const ListOfCategoryItem = ({ categories }: any) => {
           </Grid>
         </Grid.Container>
       </Card>
-    </Container >
+    </Container>
   )
 }
