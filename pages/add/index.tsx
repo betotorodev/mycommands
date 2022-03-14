@@ -13,12 +13,13 @@ import {
 } from '@nextui-org/react'
 import { Layout } from 'layout/layout'
 import { ListOfCategoryItem } from 'components/listOfCategoryItem'
-import { useForm } from 'hooks/useForm'
+import { useCategory, useForm } from 'hooks'
 
 const Add: NextPage = (props) => {
   const { result }: any = props
   const [inputValue, handleInputValue] = useForm()
   const router = useRouter()
+  const { isCategoryRepeated } = useCategory()
 
   const handleCommandChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
@@ -37,11 +38,13 @@ const Add: NextPage = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputValue),
       })
-      await fetch('/api/post/category', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(categoryObject),
-      })
+      if (isCategoryRepeated === false) {
+        await fetch('/api/post/category', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(categoryObject),
+        })
+      }
       await router.push('/list')
     } catch (error) {
       console.error(error)

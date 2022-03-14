@@ -14,19 +14,22 @@ import { makeRandomID } from 'pages/utils'
 
 export const ListOfCategoryItem = ({ categories }: any) => {
   const [id, setId] = useState('')
-  const [categoryValue, handleCategoryValue] = useCategory()
+  const { categoryValue, handleCategoryValue, setIsCategoryRepeated } = useCategory()
   const [_, handleInputValue] = useForm()
   const [newCategory, setNewCategory] = useState(categories)
+  const isRepeated = (name: string) => {
+    return newCategory.some(
+      (item: any) => item.name === name
+    )
+  }
 
   const handleCategoryChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
     handleCategoryValue(value)
   }
   const handleKeyDown = (e: KeyboardEvent) => {
-    const isRepeated = newCategory.some(
-      (item: any) => item.name === categoryValue
-    )
-    if (e.key === 'Enter' && !isRepeated) {
+    const categoryValueRepeated = isRepeated(categoryValue)
+    if (e.key === 'Enter' && !categoryValueRepeated) {
       const temporalId = makeRandomID()
       handleInputValue('category', categoryValue)
       setNewCategory((prevState: any) => {
@@ -40,15 +43,20 @@ export const ListOfCategoryItem = ({ categories }: any) => {
       })
       setId(temporalId)
       handleCategoryValue('')
+      setIsCategoryRepeated(categoryValueRepeated)
     }
-    if (e.key === 'Enter' && isRepeated) {
+    if (e.key === 'Enter' && categoryValueRepeated) {
+      const categoryValueRepeated = isRepeated(categoryValue)
       handleInputValue('category', '')
       handleCategoryValue('')
+      setIsCategoryRepeated(categoryValueRepeated)
     }
   }
   const handleCategoryClick = (categoryId: string, categoryName: string) => {
+    const categoryValueRepeated = isRepeated(categoryName)
     setId(categoryId)
     handleInputValue('category', categoryName)
+    setIsCategoryRepeated(categoryValueRepeated)
   }
   return (
     <Container>
