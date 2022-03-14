@@ -10,10 +10,10 @@ import {
 } from '@nextui-org/react'
 import { CategoryItem } from 'components/categoryItem'
 import { useForm, useCategory } from 'hooks/index'
-import category from 'pages/api/post/category'
+import { makeRandomID } from 'pages/utils'
 
 export const ListOfCategoryItem = ({ categories }: any) => {
-  const [id, setId] = useState(0)
+  const [id, setId] = useState('')
   const [categoryValue, handleCategoryValue] = useCategory()
   const [_, handleInputValue] = useForm()
   const [newCategory, setNewCategory] = useState(categories)
@@ -27,15 +27,18 @@ export const ListOfCategoryItem = ({ categories }: any) => {
       (item: any) => item.name === categoryValue
     )
     if (e.key === 'Enter' && !isRepeated) {
+      const temporalId = makeRandomID()
       handleInputValue('category', categoryValue)
       setNewCategory((prevState: any) => {
         return [
           ...prevState,
           {
+            id: temporalId,
             name: categoryValue
           }
         ]
       })
+      setId(temporalId)
       handleCategoryValue('')
     }
     if (e.key === 'Enter' && isRepeated) {
@@ -43,7 +46,7 @@ export const ListOfCategoryItem = ({ categories }: any) => {
       handleCategoryValue('')
     }
   }
-  const handleCategoryClick = (categoryId: number, categoryName: string) => {
+  const handleCategoryClick = (categoryId: string, categoryName: string) => {
     setId(categoryId)
     handleInputValue('category', categoryName)
   }
