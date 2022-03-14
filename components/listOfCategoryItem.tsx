@@ -2,8 +2,6 @@ import {
   useState,
   ChangeEvent,
   KeyboardEvent,
-  useEffect,
-  useRef
 } from 'react'
 import {
   Text,
@@ -15,15 +13,13 @@ import {
   FormElement
 } from '@nextui-org/react'
 import { CategoryItem } from 'components/categoryItem'
-import { prisma } from 'prisma/index'
 import { useForm, useCategory } from 'hooks/index'
-import category from 'pages/api/post/category'
 
 export const ListOfCategoryItem = ({ categories }: any) => {
-  let category = useRef('')
   const [categoryValue, handleCategoryValue] = useCategory()
-  const [inputValue, handleInputValue] = useForm()
+  const [_, handleInputValue] = useForm()
   const [newCategory, setNewCategory] = useState(categories)
+
   const handleCategoryChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target
     handleCategoryValue(value)
