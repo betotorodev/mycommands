@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, KeyboardEvent, MouseEventHandler } from 'react'
+import { useState, ChangeEvent, KeyboardEvent } from 'react'
 import {
   Text,
   Container,
@@ -10,7 +10,7 @@ import {
 } from '@nextui-org/react'
 import { CategoryItem } from 'components/categoryItem'
 import { useForm, useCategory } from 'hooks/index'
-import { makeRandomID } from 'pages/utils'
+import { makeRandomID } from 'utils/utils'
 
 export const ListOfCategoryItem = ({ categories }: any) => {
   const [id, setId] = useState('')

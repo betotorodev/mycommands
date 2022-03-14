@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { Text, Container, Spacer } from '@nextui-org/react'
 import { LoginButton } from 'components/loginButton'
-import { SESSION_STATUS } from 'pages/utils'
+import { SESSION_STATUS } from 'utils/utils'
 import { Loading } from 'components/loading/loading'
 
 const Home: NextPage = () => {
