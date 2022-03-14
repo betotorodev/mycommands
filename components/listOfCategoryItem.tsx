@@ -10,6 +10,7 @@ import {
 } from '@nextui-org/react'
 import { CategoryItem } from 'components/categoryItem'
 import { useForm, useCategory } from 'hooks/index'
+import category from 'pages/api/post/category'
 
 export const ListOfCategoryItem = ({ categories }: any) => {
   const [id, setId] = useState(0)
@@ -22,7 +23,10 @@ export const ListOfCategoryItem = ({ categories }: any) => {
     handleCategoryValue(value)
   }
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    const isRepeated = newCategory.some(
+      (item: any) => item.name === categoryValue
+    )
+    if (e.key === 'Enter' && !isRepeated) {
       handleInputValue('category', categoryValue)
       setNewCategory((prevState: any) => {
         return [
@@ -34,8 +38,15 @@ export const ListOfCategoryItem = ({ categories }: any) => {
       })
       handleCategoryValue('')
     }
+    if (e.key === 'Enter' && isRepeated) {
+      handleInputValue('category', '')
+      handleCategoryValue('')
+    }
   }
-
+  const handleCategoryClick = (categoryId: number, categoryName: string) => {
+    setId(categoryId)
+    handleInputValue('category', categoryName)
+  }
   return (
     <Container>
       <Text
@@ -49,7 +60,10 @@ export const ListOfCategoryItem = ({ categories }: any) => {
         <Grid.Container gap={1}>
           {newCategory.map((category: any, index: number) => {
             return (
-              <Grid onClick={() => setId(category.id)} key={index}>
+              <Grid
+                onClick={() => handleCategoryClick(category.id, category.name)}
+                key={index}
+              >
                 <CategoryItem
                   title={category.name}
                   checked={id === category.id}
