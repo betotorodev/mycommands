@@ -5,6 +5,8 @@ import { Header } from 'components/header'
 import { ListOfCommands } from "components/listOfCommands"
 import { prisma } from 'prisma/index'
 import { Command } from '@prisma/client'
+import { useCommandInfo } from 'hooks/useCommandInfo'
+import { useEffect } from 'react'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const result = await prisma.command.findMany({

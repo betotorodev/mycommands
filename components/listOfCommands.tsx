@@ -14,6 +14,7 @@ export const ListOfCommands = ({ listOfCommands }: any) => {
         {listOfCommands?.map((item: any) => (
           <Grid key={item.id} xs={6}>
             <CardItem
+              id={item.id}
               description={item.description}
               command={item.text}
               category={item.category}

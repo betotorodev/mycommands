@@ -1,3 +1,4 @@
+import { VFC } from 'react'
 import { useToggle } from 'hooks/useToggle'
 import { Card, Col, Modal, Row, Text } from '@nextui-org/react'
 import { CardIcons } from './cardIcons'
@@ -10,14 +11,18 @@ const themeColors = {
   textLight: '#E7ECED'
 }
 
-export const CardItem = ({
-  command,
-  description,
-  category,
-}: {
+interface CardItemData {
+  id: string
   command: string
   description: string
   category: string
+}
+
+export const CardItem: VFC<CardItemData> = ({
+  id,
+  command,
+  description,
+  category
 }) => {
   const [isVisible, handleModal] = useToggle()
   return (
@@ -66,7 +71,7 @@ export const CardItem = ({
             </small>
           </div>
           <div>
-            <CardIcons />
+            <CardIcons id={id} />
           </div>
           <InfoModal isVisible={isVisible} handleModal={handleModal} description={description} />
         </Row>
