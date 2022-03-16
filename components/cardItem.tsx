@@ -1,5 +1,7 @@
 import { useToggle } from 'hooks/useToggle'
 import { Card, Col, Modal, Row, Text } from '@nextui-org/react'
+import { CardIcons } from './cardIcons'
+import { InfoModal } from './infoModal'
 
 const themeColors = {
   backgroundDark: '#40434A',
@@ -28,54 +30,45 @@ export const CardItem = ({
         fontFamily: 'mono'
       }}
     >
-      <Text css={{ fontFamily: 'mono' }}>{command}</Text>
+      <Text as='p' css={{ fontFamily: 'mono' }}>{command}</Text>
       <Card.Footer>
-        <Row justify='flex-start'>
-          <small
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: 'fit-content',
-              padding: ' 8px 16px',
-              marginRight: '8px',
-              borderRadius: '0.75rem',
-              backgroundColor: '#7928ca',
-              color: 'white'
-            }}
-          >
-            {category}
-          </small>
-          <small
-            onClick={handleModal}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: 'fit-content',
-              padding: ' 8px 16px',
-              borderRadius: '0.75rem',
-              backgroundColor: '#444',
-              color: 'white'
-            }}
-          >
-            Info
-          </small>
-          <Modal
-            scroll
-            closeButton
-            aria-describedby='modal-description'
-            width='20rem'
-            open={isVisible}
-            onClose={handleModal}
-            style={{ paddingBottom: '1.5rem' }}
-          >
-            <Modal.Body>
-              <Text id='modal-description' size={18} b>
-                {description}
-              </Text>
-            </Modal.Body>
-          </Modal>
+        <Row justify='space-between' align='center'>
+          <div style={{ display: 'flex' }}>
+            <small
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: 'fit-content',
+                padding: ' 8px 16px',
+                marginRight: '8px',
+                borderRadius: '0.75rem',
+                backgroundColor: '#7928ca',
+                color: 'white'
+              }}
+            >
+              {category}
+            </small>
+            <small
+              onClick={handleModal}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: 'fit-content',
+                padding: ' 8px 16px',
+                borderRadius: '0.75rem',
+                backgroundColor: '#444',
+                color: 'white'
+              }}
+            >
+              Info
+            </small>
+          </div>
+          <div>
+            <CardIcons />
+          </div>
+          <InfoModal isVisible={isVisible} handleModal={handleModal} description={description} />
         </Row>
       </Card.Footer>
     </Card>

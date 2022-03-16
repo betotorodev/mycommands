@@ -3,21 +3,6 @@ import { ReactChild, ReactNode, VFC } from 'react';
 import { Container, Grid } from '@nextui-org/react'
 import { CardItem } from 'components/cardItem'
 
-// type Command = {
-//   author: string,
-//   authorId: string,
-//   command: string,
-//   description: string,
-//   id: string,
-//   result: ReactNode
-// }
-
-// interface listOfCommands {
-//   listOfCommands: ReactNode | ReactChild
-// }
-
-// CORRECT TYPES
-
 export const ListOfCommands = ({ listOfCommands }: any) => {
   const array = Array(15).fill('')
   return (
