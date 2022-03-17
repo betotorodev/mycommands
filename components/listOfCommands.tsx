@@ -2,9 +2,11 @@
 import { ReactChild, ReactNode, VFC } from 'react';
 import { Container, Grid } from '@nextui-org/react'
 import { CardItem } from 'components/cardItem'
+import { useCommandInfo } from 'hooks/useCommandInfo';
 
-export const ListOfCommands = ({ listOfCommands }: any) => {
+export const ListOfCommands = () => {
   const array = Array(15).fill('')
+  const { listOfCommands } = useCommandInfo()
   return (
     <Container>
       <Grid.Container

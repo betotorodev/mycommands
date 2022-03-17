@@ -21,6 +21,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const List: NextPage = (props) => {
   const { result }: any = props
+  const { setListOfCommands } = useCommandInfo()
+
+  useEffect(() => {
+    setListOfCommands(result)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Layout>
       <Head>
@@ -28,7 +35,7 @@ const List: NextPage = (props) => {
       </Head>
       <main style={{ paddingTop: '2rem' }}>
         <Header />
-        <ListOfCommands listOfCommands={result} />
+        <ListOfCommands />
       </main>
     </Layout>
   )

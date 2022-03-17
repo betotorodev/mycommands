@@ -1,6 +1,7 @@
 import { createContext, SetStateAction, useState, Dispatch } from "react";
 
 export type CommandValues = {
+  id?: string;
   text: string;
   description: string;
   category: string;
