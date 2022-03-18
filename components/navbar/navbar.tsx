@@ -1,14 +1,21 @@
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/react'
 import { useToggle } from 'hooks/useToggle'
 import { Container, Row, Avatar, Card } from '@nextui-org/react'
 import { List, AddCircledOutline } from 'iconoir-react'
 import { CloseSession } from 'components/closeSession'
-import { useLargeBreakpoint } from 'hooks'
+import { useChangeColor, useLargeBreakpoint } from 'hooks'
+import styles from 'components/navbar/styles.module.css'
+
+const BUTTON_TYPES = {
+  LIST: 'list',
+  ADD: 'add',
+}
 
 export const Navbar = () => {
-  const router = useRouter()
+  const [buttonColors, setButtonColors] = useState<string | null>('')
+  const { handleClick } = useChangeColor()
   const { data: session } = useSession()
   const [isVisible, setIsVisible] = useToggle(false)
   const isDesktop = useLargeBreakpoint()
@@ -16,6 +23,11 @@ export const Navbar = () => {
   const handleCloseSession = () => {
     signOut({ callbackUrl: '/' })
   }
+
+  useEffect(() => {
+    setButtonColors(window.localStorage.getItem('button_color'))
+  }, [])
+
   return (
     <Container
       css={{
@@ -30,17 +42,22 @@ export const Navbar = () => {
         <Row justify='space-between' align='center'>
           <Link href='/list' passHref>
             <List
+              onClick={() => handleClick(BUTTON_TYPES.LIST)}
+              className={styles.list}
               style={{
                 transform: `${isDesktop ? 'rotate(270deg)' : ''}`,
-                cursor: 'pointer'
+                cursor: 'pointer',
               }}
+              color={`${buttonColors === '1' ? '#0070F3' : 'black'}`}
             />
           </Link>
           <Link href='/add' passHref>
             <AddCircledOutline
+              onClick={() => handleClick(BUTTON_TYPES.ADD)}
               height={36}
               width={36}
               style={{ cursor: 'pointer' }}
+              color={`${buttonColors === '2' ? '#0070F3' : 'black'}`}
             />
           </Link>
           <Avatar
