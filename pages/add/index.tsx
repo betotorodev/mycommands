@@ -14,10 +14,12 @@ import {
 import { Layout } from 'layout/layout'
 import { ListOfCategoryItem } from 'components/listOfCategoryItem'
 import { useCategory, useForm } from 'hooks'
+import { useCommandInfo } from 'hooks/useCommandInfo'
 
 const Add: NextPage = (props) => {
   const { result }: any = props
   const [inputValue, handleInputValue] = useForm()
+  const { setListOfCategories } = useCommandInfo()
   const router = useRouter()
   const { isCategoryRepeated } = useCategory()
 
@@ -51,6 +53,12 @@ const Add: NextPage = (props) => {
     }
   }
 
+  useEffect(() => {
+    setListOfCategories(result)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
   return (
     <Layout>
       <Head>
@@ -73,7 +81,7 @@ const Add: NextPage = (props) => {
           />
         </Container>
         <Spacer y={2} />
-        <ListOfCategoryItem categories={result} />
+        <ListOfCategoryItem />
         <Spacer y={2} />
         <Container>
           <Textarea

@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, KeyboardEvent } from 'react'
+import { useState, ChangeEvent, KeyboardEvent, useEffect } from 'react'
 import {
   Text,
   Container,
@@ -11,17 +11,24 @@ import {
 import { CategoryItem } from 'components/categoryItem'
 import { useForm, useCategory } from 'hooks/index'
 import { makeRandomID } from 'utils/utils'
+import { useCommandInfo } from 'hooks/useCommandInfo'
 
-export const ListOfCategoryItem = ({ categories }: any) => {
+export const ListOfCategoryItem = () => {
+  const { listOfCategories } = useCommandInfo()
+  console.log(listOfCategories)
   const [id, setId] = useState('')
   const { categoryValue, handleCategoryValue, setIsCategoryRepeated } = useCategory()
   const [_, handleInputValue] = useForm()
-  const [newCategory, setNewCategory] = useState(categories)
+  const [newCategory, setNewCategory] = useState(listOfCategories)
   const isRepeated = (name: string) => {
     return newCategory.some(
       (item: any) => item.name === name
     )
   }
+  useEffect(() => {
+    setNewCategory(listOfCategories)
+  }, [listOfCategories])
+
 
   const handleCategoryChange = (e: ChangeEvent<FormElement>) => {
     const { value } = e.target

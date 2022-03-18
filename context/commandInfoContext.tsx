@@ -5,6 +5,8 @@ interface CommandInfo {
   setId: Dispatch<SetStateAction<string>>
   listOfCommands: Array<any>
   setListOfCommands: Dispatch<SetStateAction<any>>
+  listOfCategories: Array<any>
+  setListOfCategories: Dispatch<SetStateAction<any>>
 }
 
 const defaultState = {
@@ -12,6 +14,8 @@ const defaultState = {
   setId: () => { },
   listOfCommands: [],
   setListOfCommands: () => { },
+  listOfCategories: [],
+  setListOfCategories: () => { },
 }
 
 const Context = createContext<CommandInfo>(defaultState)
@@ -19,12 +23,15 @@ const Context = createContext<CommandInfo>(defaultState)
 export function CommandInfoProvider({ children }: { children: React.ReactNode }) {
   const [id, setId] = useState('')
   const [listOfCommands, setListOfCommands] = useState([])
+  const [listOfCategories, setListOfCategories] = useState([])
 
   const values = {
     id,
     setId,
     listOfCommands,
-    setListOfCommands
+    setListOfCommands,
+    listOfCategories,
+    setListOfCategories
   }
 
   return <Context.Provider value={values}>
