@@ -1,16 +1,22 @@
 import { useState, VFC } from 'react'
-import { useRouter } from 'next/router'
-import { Trash, ArrowDown, ArrowUp } from 'iconoir-react'
-import { CLIENT_RENEG_LIMIT } from 'tls'
+import { Trash } from 'iconoir-react'
+import { useCommandInfo } from 'hooks/useCommandInfo'
 
 interface CardIconsData {
   id: string
 }
 
 export const CardIcons: VFC<CardIconsData> = ({ id }) => {
-  const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const { setListOfCommands, listOfCommands } = useCommandInfo()
+  const deleteCommandInLocal = (id: string) => {
+    const refreshListOfCommands = listOfCommands.filter(command => {
+      return command.id !== id
+    })
+    return refreshListOfCommands
+  }
   const handleDelete = async () => {
+    const newArray = deleteCommandInLocal(id)
     setLoading(true)
     await fetch(`/api/delete/${id}`, {
       method: 'DELETE',
@@ -18,6 +24,8 @@ export const CardIcons: VFC<CardIconsData> = ({ id }) => {
       .then((info) => {
         console.log(info)
         setLoading(false)
+        console.log(newArray)
+        setListOfCommands(newArray)
       })
       .catch((error) => {
         console.log(error)
