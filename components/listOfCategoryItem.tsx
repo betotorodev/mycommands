@@ -15,7 +15,6 @@ import { useCommandInfo } from 'hooks/useCommandInfo'
 
 export const ListOfCategoryItem = () => {
   const { listOfCategories } = useCommandInfo()
-  console.log(listOfCategories)
   const [id, setId] = useState('')
   const { categoryValue, handleCategoryValue, setIsCategoryRepeated } = useCategory()
   const [_, handleInputValue] = useForm()

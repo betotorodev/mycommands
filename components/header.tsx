@@ -1,15 +1,29 @@
 import { useToggle } from 'hooks/useToggle';
-import { Container, Grid, Input } from '@nextui-org/react'
+import { Container, FormElement, Grid, Input } from '@nextui-org/react'
 import { Search, ArrowDown, ArrowUp } from 'iconoir-react'
 import { ListOfCategories } from './listOfCategories/listOfCategories'
+import { useFindCommands } from 'hooks/useFindCommands';
+import { ChangeEvent } from 'react';
 
 export const Header = () => {
   const [toggle, handleModal] = useToggle()
+  const { findByWord } = useFindCommands()
+  const handleSearchByWord = (e: ChangeEvent<FormElement>) => {
+    const { value } = e.target
+    findByWord(value)
+  }
   return (
     <Container>
       <Grid.Container gap={1}>
         <Grid xs={8}>
-          <Input size="md" width='100%' aria-label="buscador" clearable placeholder="busca tu comando" contentRight={<Search />} />
+          <Input
+            size="md"
+            width='100%'
+            aria-label="buscador"
+            clearable placeholder="busca tu comando"
+            contentRight={<Search />}
+            onChange={handleSearchByWord}
+          />
         </Grid>
         <Grid xs={4} css={{ position: 'relative' }}>
           <div onClick={handleModal} style={{

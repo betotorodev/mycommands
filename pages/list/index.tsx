@@ -21,10 +21,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const List: NextPage = (props) => {
   const { result }: any = props
-  const { setListOfCommands } = useCommandInfo()
+  const { setListOfCommands, setOriginalData } = useCommandInfo()
 
   useEffect(() => {
     setListOfCommands(result)
+    setOriginalData(result)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
