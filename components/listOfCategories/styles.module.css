@@ -1,7 +1,7 @@
 .list {
-  cursor: 'pointer' 
+  cursor: pointer; 
 }
 
 .list:hover {
-  color: '#7928CA';
+  color: #7928CA;
 }

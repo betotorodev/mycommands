@@ -7,7 +7,6 @@ export const useFindCommands = (): {
 } => {
 
   const {
-    listOfCommands,
     setListOfCommands,
     originalData
   } = useContext(Context)
@@ -16,14 +15,16 @@ export const useFindCommands = (): {
 
   const findByWord = (word: string) => {
     const commands = originalData?.filter((command: any) => command.text?.includes(word))
-    // if (word === '') setListOfCommands(originalDataParsed)
-    if (word === '') console.log(originalData)
     setListOfCommands(commands)
   }
 
   const findByCategory = (category: string) => {
-    const commands = listOfCommands.filter(command => command.category === category)
-    return commands
+    if (category === "all") {
+      setListOfCommands(originalData)
+    } else {
+      const commands = originalData.filter(command => command.category === category)
+      setListOfCommands(commands)
+    }
   }
 
   return {
