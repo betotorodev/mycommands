@@ -8,7 +8,9 @@ export const useCommandInfo = () => {
     listOfCommands,
     setListOfCommands,
     listOfCategories,
-    setListOfCategories
+    setListOfCategories,
+    originalData,
+    setOriginalData
   } = useContext(Context)
 
   return {
@@ -17,6 +19,8 @@ export const useCommandInfo = () => {
     listOfCommands,
     setListOfCommands,
     listOfCategories,
-    setListOfCategories
+    setListOfCategories,
+    originalData,
+    setOriginalData
   }
 }
