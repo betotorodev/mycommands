@@ -1,7 +1,7 @@
 import { useToggle } from 'hooks/useToggle';
 import { Container, Grid, Input } from '@nextui-org/react'
 import { Search, ArrowDown, ArrowUp } from 'iconoir-react'
-import { ListOfCategories } from './listOfCategories'
+import { ListOfCategories } from './listOfCategories/listOfCategories'
 
 export const Header = () => {
   const [toggle, handleModal] = useToggle()
