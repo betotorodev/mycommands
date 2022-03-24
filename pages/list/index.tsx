@@ -7,6 +7,7 @@ import { prisma } from 'prisma/index'
 import { Command } from '@prisma/client'
 import { useCommandInfo } from 'hooks/useCommandInfo'
 import { useEffect } from 'react'
+import { ComponentWithAuth } from 'auth.utils'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const result = await prisma.command.findMany({
@@ -19,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { result } };
 };
 
-const List: NextPage = (props) => {
+const List: ComponentWithAuth<NextPage> = (props) => {
   const { result }: any = props
   const { setListOfCommands, setOriginalData } = useCommandInfo()
 
@@ -43,3 +44,5 @@ const List: NextPage = (props) => {
 }
 
 export default List
+
+List.authenticationEnabled = true

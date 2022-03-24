@@ -15,8 +15,9 @@ import { Layout } from 'layout/layout'
 import { ListOfCategoryItem } from 'components/listOfCategoryItem'
 import { useCategory, useForm } from 'hooks'
 import { useCommandInfo } from 'hooks/useCommandInfo'
+import { ComponentWithAuth } from 'auth.utils'
 
-const Add: NextPage = (props) => {
+const Add: ComponentWithAuth<NextPage> = (props) => {
   const { result }: any = props
   const [inputValue, handleInputValue] = useForm()
   const { setListOfCategories } = useCommandInfo()
@@ -103,6 +104,8 @@ const Add: NextPage = (props) => {
 }
 
 export default Add
+
+Add.authenticationEnabled = true
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const result = await prisma.category.findMany({

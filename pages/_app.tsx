@@ -1,20 +1,24 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { NextUIProvider } from '@nextui-org/react'
 import { SessionProvider } from 'next-auth/react'
-import { CommandValuesProvider } from 'context/valuesContext'
-import { CommandInfoProvider } from 'context/commandInfoContext'
+import { AppAuthProps } from 'auth.utils'
+import Auth from 'utils/auth'
+import { App } from '../utils/app'
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppAuthProps) {
   return (
     <SessionProvider session={session}>
-      <CommandInfoProvider>
-        <CommandValuesProvider>
-          <NextUIProvider>
+      {
+        Component.authenticationEnabled
+          ? <Auth>
+            <App>
+              <Component {...pageProps} />
+            </App>
+          </Auth>
+          :
+          <App>
             <Component {...pageProps} />
-          </NextUIProvider>
-        </CommandValuesProvider>
-      </CommandInfoProvider>
+          </App>
+      }
     </SessionProvider>
   )
 }
