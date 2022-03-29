@@ -1,0 +1,30 @@
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  padding: 8px 16px;
+  margin-right: 8px;
+  border-radius: 0.75rem;
+  background-color: #7928ca;
+  color: white;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  padding: 8px 16px;
+  margin-right: 8px;
+  border-radius: 0.75rem;
+  background-color: #444;
+  color: white;
+}
+
+@media (max-width: 650px) {
+  .category, .info {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}

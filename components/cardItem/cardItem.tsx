@@ -1,8 +1,9 @@
 import { VFC } from 'react'
 import { useToggle } from 'hooks/useToggle'
 import { Card, Col, Modal, Row, Text } from '@nextui-org/react'
-import { CardIcons } from './cardIcons'
-import { InfoModal } from './infoModal'
+import { CardIcons } from '../cardIcons'
+import { InfoModal } from '../infoModal'
+import styles from './styles.module.css'
 
 const themeColors = {
   backgroundDark: '#40434A',
@@ -40,32 +41,13 @@ export const CardItem: VFC<CardItemData> = ({
         <Row justify='space-between' align='center'>
           <div style={{ display: 'flex' }}>
             <small
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: 'fit-content',
-                padding: ' 8px 16px',
-                marginRight: '8px',
-                borderRadius: '0.75rem',
-                backgroundColor: '#7928ca',
-                color: 'white'
-              }}
+              className={styles.category}
             >
               {category}
             </small>
             <small
+              className={styles.info}
               onClick={handleModal}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: 'fit-content',
-                padding: ' 8px 16px',
-                borderRadius: '0.75rem',
-                backgroundColor: '#444',
-                color: 'white'
-              }}
             >
               Info
             </small>

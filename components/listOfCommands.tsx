@@ -1,7 +1,7 @@
 
 import { ReactChild, ReactNode, VFC } from 'react';
 import { Container, Grid } from '@nextui-org/react'
-import { CardItem } from 'components/cardItem'
+import { CardItem } from 'components/cardItem/cardItem'
 import { useCommandInfo } from 'hooks/useCommandInfo';
 
 export const ListOfCommands = () => {
