@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export enum Breakpoints {
-  extraSmall = '(max-width: 650px)',
+  extraSmall = '(min-width: 500px)',
   small = '(min-width: 650px)',
   medium = '(min-width: 960px)',
   large = '(min-width: 1280px)',
@@ -24,7 +24,7 @@ export const useMediaQuery = (query: string): boolean => {
   return matches
 };
 
-export const useXXLargeBreakpoint = () => useMediaQuery(Breakpoints.extraSmall)
+export const useXSmallBreakpoint = () => useMediaQuery(Breakpoints.extraSmall)
 export const useSmallBreakpoint = () => useMediaQuery(Breakpoints.small)
 export const useMediumBreakpoint = () => useMediaQuery(Breakpoints.medium)
 export const useLargeBreakpoint = () => useMediaQuery(Breakpoints.large)

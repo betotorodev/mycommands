@@ -1,9 +1,10 @@
 import { VFC } from 'react'
 import { useToggle } from 'hooks/useToggle'
-import { Card, Col, Modal, Row, Text } from '@nextui-org/react'
+import { Card, Row, Text } from '@nextui-org/react'
 import { CardIcons } from '../cardIcons'
 import { InfoModal } from '../infoModal'
 import styles from './styles.module.css'
+import { useXSmallBreakpoint } from 'hooks'
 
 const themeColors = {
   backgroundDark: '#40434A',
@@ -26,6 +27,7 @@ export const CardItem: VFC<CardItemData> = ({
   category
 }) => {
   const [isVisible, handleModal] = useToggle()
+  const isMobile = useXSmallBreakpoint()
   return (
     <Card
       shadow={false}
@@ -39,7 +41,7 @@ export const CardItem: VFC<CardItemData> = ({
       <Text as='p' css={{ fontFamily: 'mono' }}>{command}</Text>
       <Card.Footer>
         <Row justify='space-between' align='center'>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', flexDirection: `${isMobile ? 'row' : 'column '}` }}>
             <small
               className={styles.category}
             >
