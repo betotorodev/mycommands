@@ -46,6 +46,8 @@ const Add: ComponentWithAuth<NextPage> = (props) => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(categoryObject),
+        }).then(() => {
+          setListOfCategories([...result, { name: category, id: '1' }])
         })
       }
       await router.push('/list')
