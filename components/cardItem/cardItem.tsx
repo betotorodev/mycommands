@@ -41,7 +41,7 @@ export const CardItem: VFC<CardItemData> = ({
       <Text as='p' css={{ fontFamily: 'mono' }}>{command}</Text>
       <Card.Footer>
         <Row justify='space-between' align='center'>
-          <div style={{ display: 'flex', flexDirection: `${isMobile ? 'row' : 'column '}` }}>
+          <div style={{ display: 'flex', flexDirection: `${isMobile ? 'row' : 'column'}` }}>
             <small
               className={styles.category}
             >
