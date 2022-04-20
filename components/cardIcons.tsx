@@ -1,6 +1,7 @@
 import { useState, VFC } from 'react'
 import { Trash } from 'iconoir-react'
 import { useCommandInfo } from 'hooks/useCommandInfo'
+import { Loading } from '@nextui-org/react'
 
 interface CardIconsData {
   id: string
@@ -32,8 +33,11 @@ export const CardIcons: VFC<CardIconsData> = ({ id }) => {
 
   return (
     <div>
-      <Trash onClick={handleDelete} style={{ cursor: 'pointer' }} color="#f21361" />
-      {loading && 'loading'}
+      {
+        loading
+          ? <Loading color="error" />
+          : <Trash onClick={handleDelete} style={{ cursor: 'pointer' }} color="#f21361" />
+      }
     </div>
   )
 }
