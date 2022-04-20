@@ -9,16 +9,19 @@ import {
   Input,
   Textarea,
   Button,
-  FormElement
+  FormElement,
+  Loading
 } from '@nextui-org/react'
 import { Layout } from 'layout/layout'
 import { ListOfCategoryItem } from 'components/listOfCategoryItem'
 import { useCategory, useForm } from 'hooks'
 import { useCommandInfo } from 'hooks/useCommandInfo'
 import { ComponentWithAuth } from 'auth.utils'
+// import { Loading } from 'components/loading/loading'
 
 const Add: ComponentWithAuth<NextPage> = (props) => {
   const { result }: any = props
+  const [loading, setLoading] = useState(false)
   const [inputValue, handleInputValue] = useForm()
   const { setListOfCategories } = useCommandInfo()
   const router = useRouter()
@@ -36,10 +39,13 @@ const Add: ComponentWithAuth<NextPage> = (props) => {
     const { category } = inputValue
     const categoryObject = { category }
     try {
+      setLoading(true)
       await fetch('/api/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputValue),
+      }).then((res) => {
+        setLoading(false)
       })
       if (isCategoryRepeated === false) {
         await fetch('/api/post/category', {
@@ -78,7 +84,7 @@ const Add: ComponentWithAuth<NextPage> = (props) => {
           <Input
             onChange={handleCommandChange}
             clearable
-            labelPlaceholder='Agrega un comando'
+            labelPlaceholder='Escribe un comando'
             width='100%'
             css={{ fontFamily: 'mono' }}
           />
@@ -98,7 +104,11 @@ const Add: ComponentWithAuth<NextPage> = (props) => {
         </Container>
         <Spacer y={2} />
         <Container justify='center' display='flex'>
-          <Button onClick={handleSave}>Guardar</Button>
+          {
+            loading
+              ? <Loading />
+              : <Button onClick={handleSave}>Guardar</Button>
+          }
         </Container>
       </main>
     </Layout>

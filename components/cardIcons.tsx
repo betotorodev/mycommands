@@ -22,9 +22,7 @@ export const CardIcons: VFC<CardIconsData> = ({ id }) => {
       method: 'DELETE',
     })
       .then((info) => {
-        console.log(info)
         setLoading(false)
-        console.log(newArray)
         setListOfCommands(newArray)
       })
       .catch((error) => {
